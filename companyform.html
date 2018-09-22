@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+.input-container {
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.icon {
+    padding: 10px;
+    background: black;
+    color: white;
+    min-width: 50px;
+    text-align: center;
+}
+
+.input-field {
+	align : center;
+    width: 100%;
+    padding: 10px;
+    outline: none;
+}
+
+.input-field:focus {
+    border: 2px solid black;
+}
+
+/* Set a style for the submit button */
+.btn {
+    background-color: black;
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    cursor: pointer;
+    width: 20%;
+    opacity: 0.9;
+}
+
+.btn:hover {
+    opacity: 1;
+}
+</style>
+
+<script>
+function myvalidate()
+{
+if(document.getElementById("fname").value=="")
+{
+alert("Name should not be empty");
+document.getElementById('fname').focus();
+return false;
+}
+else {
+var name = document.getElementById("fname").value;
+var pattern = /^[a-zA-Z\.]*$/;
+if(!(pattern.test(name))){
+	alert("Student Name: Only letters, whitespace and dot allowed");
+		document.getElementById('fname').focus();
+		return false;
+}
+}
+
+if(document.getElementById("email").value=="")
+{
+alert("Email should not be empty");
+document.getElementById('email').focus();
+return false;
+}
+else {
+var email = document.getElementById("email").value;
+var pattern = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/;
+if(!(pattern.test(email))){
+	alert("Email Id :Only letters with lowercase");
+		document.getElementById('email').focus();
+		return false;
+}
+}
+
+if(document.getElementById("address").value=="")
+{
+alert("Address should not be empty");
+document.getElementById('address').focus();
+return false;
+}
+if(isNaN(document.getElementById("contact").value)||(document.getElementById("contact").value.length!=10))
+{
+alert("contact number should not be empty, Its a 10 digit number");
+document.getElementById('contact').focus();
+return false;
+}
+if(document.getElementById("qual").value=="")
+{
+alert("Please select qualification");
+document.getElementById('qual').focus();
+return false;
+}
+return true;
+}
+</script>
+</head>
+<body>
+<center>
+<form action ="insertcomp.php" method='post'>
+<h2>Company Data Form</h2>
+<fieldset>
+<legend>Details</legend>
+<b>
+<div class="input-container">
+    <i class="fa fa-user icon"></i>
+<input class="input-field" type='text' id='fname' name='fname'placeholder='company Name*'> <br />
+</div>
+  <div class="input-container">
+    <i class="fa fa-user icon"></i>Person of contact:<br>
+<input class="input-field" type='text' id='lname' name='lname'placeholder='Name'> <br />
+</div>
+  <div class="input-container">
+    <i class="fa fa-address-card-o icon"></i>
+<textarea class="input-field" id='address' name='address' rows='5' cols='50'placeholder='Address*'></textarea> <br />
+</div>
+  <div class="input-container">
+    <i class="fa fa-phone icon"></i>
+<input class="input-field" type='text' id='contact' name='contact'placeholder='Contact No*'> <br />
+</div>    
+  <div class="input-container">
+    <i class="fa fa-envelope icon"></i>
+<input class="input-field" type='text' id='email' name='email' placeholder='e-mail id*'> <br />
+</div>  
+<div class="input-container">
+<i class="fa fa-venus-mars icon"></i>Candidates required:
+<input type='radio' id='gender1' name='gender' value='Male' checked>Male
+<input type='radio' id='gender2' name='gender' value='Female'>Female 
+<input type='radio' id='gender3' name='gender' value='both'>either male or female<br/>
+</div>
+  <div class="input-container">
+    <i class="fa fa-quora icon"></i>Qualification required<br>
+<select class="input-field" id='qual' name='qual'placeholder='Qualification required*'>
+<option value=''>Select</option>
+<option value='ug'>UG graduates</option>
+<option value='pg'>PG graduates</option>
+<option value='any'>Any</option>
+</select>
+</div>
+  <div class="input-container">
+    <i class="fa fa-quora icon"></i>Experience required:<br>
+<select class="input-field" id='exp' name='exp'placeholder='Experience'>
+<option value=''>Select</option>
+<option value='Fresher'>Fresher</option>
+<option value='1year'>1year</option>
+<option value='2years'>2years</option>
+<option value='3years'>3years</option>
+</select>
+</div>
+
+
+<br><br>
+  <div class="input-container">
+    <i class="fa fa-pencil icon"></i>Additional Requirements:<br>
+<textarea class="input-field" id='const' name='constraint' rows='5' cols='50'placeholder='Additional Requirements*'></textarea> <br />
+</div>
+<p align='center'>
+<input class='btn' type='submit' name='submit' onclick='return myvalidate()' value='Okay'>
+</p><b>
+</fieldset>
+</form>
+</center>
+</body>
+</html>
